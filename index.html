@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Төрсөн өдрийн мэнд - Цэцэг, захиа, бялуу</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+    <!-- 1. Цэцэг дэлгэрэх хэсэг -->
+    <div id="flowerPanel" class="panel">
+        <div class="title-sm">🌱 ЦЭЦЭГ ДЭЛГЭРЖ БАЙНА...</div>
+        <canvas id="flowerCanvas" width="500" height="500"></canvas>
+        <button id="flowerNextBtn" class="btn-next hidden">Цааш ➡</button>
+    </div>
+
+    <!-- 2. Хоёр захианы товчлуур -->
+    <div id="choicePanel" class="panel hidden">
+        <div class="title-sm">💌 ЗАХИАНУУД 💌</div>
+        <button id="btnMsg1" class="choice-btn">📜 1-р захиа</button>
+        <button id="btnMsg2" class="choice-btn">💖 2-р захиа</button>
+    </div>
+
+    <!-- 3. Захиа унших хэсэг -->
+    <div id="messagePanel" class="panel hidden">
+        <div class="message-card" id="messageContent"></div>
+        <button id="msgNextBtn" class="btn-next">Цааш ✨</button>
+    </div>
+
+    <!-- 4. Баяр хүргэх үг -->
+    <div id="thanksPanel" class="panel hidden">
+        <div class="message-card" id="thanksCard"></div>
+        <button id="thanksNextBtn" class="btn-next">Цааш 🎂</button>
+    </div>
+
+    <!-- 5. Бялуу + 22 лаа -->
+    <div id="cakePanel" class="panel hidden">
+        <div class="title-sm">🎂 Төрсөн өдрийн бялуу 🎂</div>
+        <canvas id="cakeCanvas" width="500" height="280"></canvas>
+        <button id="cakeNextBtn" class="btn-next hidden">Цааш 🌠</button>
+        <div id="cakeTimerInfo"></div>
+    </div>
+
+    <!-- 6. Дөрвөлжин зураг + од харвах -->
+    <div id="starPanel" class="panel hidden">
+        <div class="title-sm">✨ Оддын мөрөөр ✨</div>
+        <div class="star-scene">
+            <div class="square-image">
+                <img id="sceneImage" src="8.jpg" alt="Миний зураг">
+            </div>
+            <div id="starTrail" class="star-trail"></div>
+        </div>
+        <button id="starNextBtn" class="btn-next hidden">Цааш 💫</button>
+    </div>
+
+    <!-- 7. Төгсгөл -->
+    <div id="finalPanel" class="panel hidden">
+        <div class="thankyou-text">Баярлалаа! ❤️</div>
+        <div class="birthday-wish">🎈 Төрсөн өдрийн мэнд 🎈</div>
+    </div>
+
+    <!-- Дууны элемент -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="3.mp3" type="audio/mpeg">
+    </audio>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
