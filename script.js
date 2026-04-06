@@ -36,7 +36,7 @@ document.body.addEventListener('click', function once() {
     document.body.removeEventListener('click', once);
 }, { once: true });
 
-// ---------- Захианы агуулга (алдаагүй) ----------
+// ---------- Захианы агуулга ----------
 const firstMsg = `喔我…..
 偷偷地爱上你
 却不敢告诉你
@@ -135,32 +135,29 @@ function drawCake() {
     const w = cakeCanvas.width, h = cakeCanvas.height;
     cctx.clearRect(0, 0, w, h);
     
-    // === 1. Тортны суурь (3 давхарга) ===
-    // Доод давхарга
+    // Тортны суурь (3 давхарга)
     cctx.fillStyle = '#f8c8d4';
     cctx.shadowBlur = 8;
     cctx.shadowColor = "rgba(0,0,0,0.2)";
     cctx.fillRect(40, h-110, w-80, 45);
-    // Дунд давхарга
     cctx.fillStyle = '#ffe0b5';
     cctx.fillRect(55, h-140, w-110, 38);
-    // Дээд давхарга
     cctx.fillStyle = '#fcc2d7';
     cctx.fillRect(70, h-165, w-140, 32);
     
-    // Глазурын дусал (дээд талд)
+    // Глазур
     cctx.beginPath();
     cctx.ellipse(w/2, h-133, w/2-60, 18, 0, 0, Math.PI*2);
     cctx.fillStyle = '#fff0f5';
     cctx.fill();
     
-    // Чимэглэл: жижиг бөөрөлзгөнө, интоор
+    // Жимсний чимэглэл
     for(let i=0; i<16; i++) {
         let x = 60 + Math.random() * (w-120);
         let y = h-115 - Math.random() * 25;
         cctx.beginPath();
         cctx.arc(x, y, 4 + Math.random()*3, 0, Math.PI*2);
-        cctx.fillStyle = hsl(${Math.random() * 20 + 340}, 80%, 60%);
+        cctx.fillStyle = `hsl(${Math.random() * 20 + 340}, 80%, 60%)`;
         cctx.fill();
         cctx.fillStyle = 'white';
         cctx.beginPath();
@@ -168,11 +165,11 @@ function drawCake() {
         cctx.fill();
     }
     
-    // Од, зүрх хэлбэрийн чимэглэл (жижиг)
+    // Од, зүрх хэлбэрийн чимэглэл
     for(let s=0; s<12; s++) {
         let x = 50 + Math.random() * (w-100);
         let y = h-155 + Math.random() * 35;
-        cctx.fillStyle = hsl(${Math.random() * 60 + 30}, 90%, 65%);
+        cctx.fillStyle = `hsl(${Math.random() * 60 + 30}, 90%, 65%)`;
         cctx.beginPath();
         for(let i=0; i<5; i++) {
             let angle = i * (Math.PI*2/5) - Math.PI/2;
@@ -190,25 +187,22 @@ function drawCake() {
     
     cctx.shadowBlur = 0;
     
-    // === 2. "22" гэсэн тооны хэлбэртэй лаа ===
-    // Тооны координат (тортны дээд хэсгийн голд)
+    // "22" тооны лаа (зузаан шугам)
     let numX = w/2 - 35;
     let numY = h-178;
-    
-    // Тоо "2" (эхний)
     cctx.shadowBlur = 6;
     cctx.shadowColor = "rgba(255,100,0,0.5)";
     cctx.lineWidth = 12;
     cctx.lineCap = 'round';
     cctx.strokeStyle = '#ff8c42';
-    // Зурах зам: 2-ын хэлбэр
+    // Эхний 2
     cctx.beginPath();
     cctx.moveTo(numX+5, numY);
     cctx.quadraticCurveTo(numX+20, numY-12, numX+28, numY-5);
     cctx.lineTo(numX+18, numY+15);
     cctx.lineTo(numX+32, numY+28);
     cctx.stroke();
-    // Хоёр дахь "2"
+    // Хоёр дахь 2
     cctx.beginPath();
     cctx.moveTo(numX+45, numY);
     cctx.quadraticCurveTo(numX+60, numY-12, numX+68, numY-5);
@@ -216,7 +210,7 @@ function drawCake() {
     cctx.lineTo(numX+72, numY+28);
     cctx.stroke();
     
-    // Дөл (лааны гал) – тоо бүрийн орой дээр
+    // Дөл зурах туслах функц
     function drawFlame(x, y) {
         cctx.beginPath();
         cctx.moveTo(x, y);
@@ -230,17 +224,14 @@ function drawCake() {
         cctx.quadraticCurveTo(x+6, y, x+2, y-2);
         cctx.fillStyle = '#ffd966';
         cctx.fill();
-        // Гэрлийн цацраг
         cctx.shadowBlur = 15;
         cctx.shadowColor = "orange";
     }
     
-    // Эхний 2-ын орой
     drawFlame(numX+18, numY-8);
-    // Хоёр дахь 2-ын орой
     drawFlame(numX+58, numY-8);
     
-    // Нэмэлт чимэг: тооны эргэн тойронд од, гялтгануур
+    // Гялтгануур
     for(let g=0; g<20; g++) {
         let angle = Math.random() * Math.PI*2;
         let rad = 20 + Math.random()*25;
@@ -248,16 +239,13 @@ function drawCake() {
         let py = (h-175) + Math.sin(angle)*rad - 5;
         cctx.beginPath();
         cctx.arc(px, py, 1.5+Math.random()*2, 0, Math.PI*2);
-        cctx.fillStyle = rgba(255, 200, 100, ${0.5+Math.random()*0.5});
+        cctx.fillStyle = `rgba(255, 200, 100, ${0.5+Math.random()*0.5})`;
         cctx.fill();
     }
     
     cctx.shadowBlur = 0;
-    // Тортны доорхи сүүдэр
     cctx.fillStyle = 'rgba(0,0,0,0.1)';
     cctx.fillRect(30, h-95, w-60, 12);
-    
-    // Бялууны тавган дээрх гялбаа
     cctx.fillStyle = '#fff9e8';
     cctx.fillRect(35, h-92, w-70, 5);
 }
