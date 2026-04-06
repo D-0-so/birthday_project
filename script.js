@@ -58,7 +58,7 @@ function showPanel(panelId) {
     panels[panelId].classList.remove('hidden');
 }
 
-// Цэцэг анимейшн
+// ---------- Цэцэг анимейшн ----------
 let bloomProgress = 0;
 let animFrame = null;
 
@@ -128,125 +128,33 @@ function startFlowerAnimation() {
     animate();
 }
 
-// ---------- Гоё торт + 22 гэсэн тооны хэлбэртэй лаа (ЗАССАН) ----------
-function drawCake() {
-    const cakeCanvas = document.getElementById('cakeCanvas');
-    const cctx = cakeCanvas.getContext('2d');
-    const w = cakeCanvas.width, h = cakeCanvas.height;
-    cctx.clearRect(0, 0, w, h);
-    
-    // Тортны 3 давхарга (томруулсан)
-    cctx.fillStyle = '#f5a3c7';
-    cctx.shadowBlur = 8;
-    cctx.shadowColor = "rgba(0,0,0,0.2)";
-    cctx.fillRect(40, h-100, w-80, 50);
-    cctx.fillStyle = '#ffe0a3';
-    cctx.fillRect(55, h-135, w-110, 40);
-    cctx.fillStyle = '#fcc2d7';
-    cctx.fillRect(70, h-165, w-140, 35);
-    
-    cctx.beginPath();
-    cctx.ellipse(w/2, h-132, w/2-60, 20, 0, 0, Math.PI*2);
-    cctx.fillStyle = '#fff5f9';
-    cctx.fill();
-    
-    for(let i=0; i<20; i++) {
-        let x = 50 + Math.random() * (w-100);
-        let y = h-100 - Math.random() * 50;
-        cctx.beginPath();
-        cctx.arc(x, y, 5 + Math.random()*4, 0, Math.PI*2);
-        cctx.fillStyle = `hsl(${Math.random() * 30 + 340}, 80%, 65%)`;
-        cctx.fill();
-        cctx.fillStyle = 'white';
-        cctx.beginPath();
-        cctx.arc(x-1.5, y-1.5, 1.5, 0, Math.PI*2);
-        cctx.fill();
+// ---------- Конфетти ----------
+function startConfetti() {
+    const colors = ["#f2abe7", "#9fa3ec", "#86d2e1", "#fec31e", "#ff9f4a", "#ff6b8b"];
+    for(let i = 0; i < 180; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        const w = Math.floor(Math.random() * 12 + 5);
+        const h = w * 1;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.cssText = `
+            position: fixed;
+            bottom: ${y}%;
+            left: ${x}%;
+            width: ${w}px;
+            height: ${h}px;
+            pointer-events: none;
+            z-index: 1000;
+        `;
+        confetti.innerHTML = `<div class="rotate"><div class="askew" style="background-color: ${color}"></div></div>`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3500);
     }
-    
-    for(let s=0; s<15; s++) {
-        let x = 45 + Math.random() * (w-90);
-        let y = h-155 + Math.random() * 45;
-        cctx.fillStyle = `hsl(${Math.random() * 60 + 30}, 90%, 65%)`;
-        cctx.beginPath();
-        for(let i=0; i<5; i++) {
-            let angle = i * (Math.PI*2/5) - Math.PI/2;
-            let x1 = x + Math.cos(angle)*7;
-            let y1 = y + Math.sin(angle)*7;
-            if(i===0) cctx.moveTo(x1, y1);
-            else cctx.lineTo(x1, y1);
-            let angle2 = angle + (Math.PI*2/10);
-            let x2 = x + Math.cos(angle2)*3.5;
-            let y2 = y + Math.sin(angle2)*3.5;
-            cctx.lineTo(x2, y2);
-        }
-        cctx.fill();
-    }
-    
-    cctx.shadowBlur = 0;
-    
-    // "22" тооны лаа (том, тод)
-    let numX = w/2 - 45;
-    let numY = h-190;
-    
-    cctx.shadowBlur = 8;
-    cctx.shadowColor = "rgba(255,100,0,0.6)";
-    cctx.lineWidth = 16;
-    cctx.lineCap = 'round';
-    cctx.strokeStyle = '#ff8c42';
-    
-    cctx.beginPath();
-    cctx.moveTo(numX+5, numY);
-    cctx.quadraticCurveTo(numX+25, numY-15, numX+32, numY-5);
-    cctx.lineTo(numX+20, numY+20);
-    cctx.lineTo(numX+38, numY+35);
-    cctx.stroke();
-    
-    cctx.beginPath();
-    cctx.moveTo(numX+50, numY);
-    cctx.quadraticCurveTo(numX+70, numY-15, numX+77, numY-5);
-    cctx.lineTo(numX+65, numY+20);
-    cctx.lineTo(numX+83, numY+35);
-    cctx.stroke();
-    
-    function drawFlame(x, y) {
-        cctx.beginPath();
-        cctx.moveTo(x, y);
-        cctx.quadraticCurveTo(x+8, y-16, x+16, y-8);
-        cctx.quadraticCurveTo(x+8, y-2, x, y);
-        cctx.fillStyle = '#ff5e00';
-        cctx.fill();
-        cctx.beginPath();
-        cctx.moveTo(x+3, y-3);
-        cctx.quadraticCurveTo(x+8, y-13, x+13, y-5);
-        cctx.quadraticCurveTo(x+8, y, x+3, y-3);
-        cctx.fillStyle = '#ffcc33';
-        cctx.fill();
-        cctx.shadowBlur = 18;
-        cctx.shadowColor = "orange";
-    }
-    
-    drawFlame(numX+20, numY-10);
-    drawFlame(numX+65, numY-10);
-    
-    for(let g=0; g<30; g++) {
-        let angle = Math.random() * Math.PI*2;
-        let rad = 25 + Math.random()*35;
-        let px = (w/2) + Math.cos(angle)*rad;
-        let py = (h-180) + Math.sin(angle)*rad;
-        cctx.beginPath();
-        cctx.arc(px, py, 2+Math.random()*2.5, 0, Math.PI*2);
-        cctx.fillStyle = `rgba(255, 220, 100, ${0.6+Math.random()*0.4})`;
-        cctx.fill();
-    }
-    
-    cctx.shadowBlur = 0;
-    cctx.fillStyle = 'rgba(0,0,0,0.1)';
-    cctx.fillRect(30, h-88, w-60, 12);
-    cctx.fillStyle = '#fff9e8';
-    cctx.fillRect(35, h-85, w-70, 6);
 }
 
-// Од харвах
+// ---------- Од харвах ----------
 let starTimeout = null;
 function startShootingStars() {
     const trail = document.getElementById('starTrail');
@@ -267,7 +175,7 @@ function startShootingStars() {
     }, 3000);
 }
 
-// Төлөвийн шилжилт
+// ---------- Төлөвийн шилжилт ----------
 let currentMessage = null;
 
 flowerNextBtn.onclick = () => {
@@ -304,9 +212,9 @@ msgNextBtn.onclick = () => {
 thanksNextBtn.onclick = () => {
     startMusic();
     showPanel('cake');
-    drawCake();
+    startConfetti();
     cakeNextBtn.classList.add('hidden');
-    cakeTimerInfo.innerText = '🎂 10 секундын дараа "Цааш" товч гарна...';
+    cakeTimerInfo.innerText = '🎂 10 секундын дараа "Цааш" товч гарна... 🎉';
     setTimeout(() => {
         cakeNextBtn.classList.remove('hidden');
         cakeTimerInfo.innerText = '✨ Дараа үзэгдэл рүү ороход бэлэн ✨';
