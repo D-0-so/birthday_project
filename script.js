@@ -128,49 +128,138 @@ function startFlowerAnimation() {
     animate();
 }
 
-// ---------- Бялуу + 22 лаа ----------
+// ---------- Гоё торт + 22 гэсэн тооны хэлбэртэй лаа ----------
 function drawCake() {
     const cakeCanvas = document.getElementById('cakeCanvas');
     const cctx = cakeCanvas.getContext('2d');
     const w = cakeCanvas.width, h = cakeCanvas.height;
-    cctx.clearRect(0,0,w,h);
-    cctx.fillStyle = '#f7c56e';
-    cctx.fillRect(50, h-100, w-100, 80);
-    cctx.fillStyle = '#e6b050';
-    cctx.fillRect(55, h-105, w-110, 15);
-    cctx.fillStyle = '#fff0c0';
-    for(let i=0;i<12;i++){
+    cctx.clearRect(0, 0, w, h);
+    
+    // === 1. Тортны суурь (3 давхарга) ===
+    // Доод давхарга
+    cctx.fillStyle = '#f8c8d4';
+    cctx.shadowBlur = 8;
+    cctx.shadowColor = "rgba(0,0,0,0.2)";
+    cctx.fillRect(40, h-110, w-80, 45);
+    // Дунд давхарга
+    cctx.fillStyle = '#ffe0b5';
+    cctx.fillRect(55, h-140, w-110, 38);
+    // Дээд давхарга
+    cctx.fillStyle = '#fcc2d7';
+    cctx.fillRect(70, h-165, w-140, 32);
+    
+    // Глазурын дусал (дээд талд)
+    cctx.beginPath();
+    cctx.ellipse(w/2, h-133, w/2-60, 18, 0, 0, Math.PI*2);
+    cctx.fillStyle = '#fff0f5';
+    cctx.fill();
+    
+    // Чимэглэл: жижиг бөөрөлзгөнө, интоор
+    for(let i=0; i<16; i++) {
+        let x = 60 + Math.random() * (w-120);
+        let y = h-115 - Math.random() * 25;
         cctx.beginPath();
-        cctx.ellipse(60+i*35, h-102, 12, 8, 0, 0, Math.PI*2);
+        cctx.arc(x, y, 4 + Math.random()*3, 0, Math.PI*2);
+        cctx.fillStyle = hsl(${Math.random() * 20 + 340}, 80%, 60%);
+        cctx.fill();
+        cctx.fillStyle = 'white';
+        cctx.beginPath();
+        cctx.arc(x-1, y-1, 1, 0, Math.PI*2);
         cctx.fill();
     }
-    let candleX = w/2 - 30;
-    let candleY = h-130;
-    cctx.fillStyle = '#ffb6c1';
-    cctx.fillRect(candleX, candleY, 18, 45);
-    cctx.fillRect(candleX+44, candleY, 18, 45);
+    
+    // Од, зүрх хэлбэрийн чимэглэл (жижиг)
+    for(let s=0; s<12; s++) {
+        let x = 50 + Math.random() * (w-100);
+        let y = h-155 + Math.random() * 35;
+        cctx.fillStyle = hsl(${Math.random() * 60 + 30}, 90%, 65%);
+        cctx.beginPath();
+        for(let i=0; i<5; i++) {
+            let angle = i * (Math.PI*2/5) - Math.PI/2;
+            let x1 = x + Math.cos(angle)*6;
+            let y1 = y + Math.sin(angle)*6;
+            if(i===0) cctx.moveTo(x1, y1);
+            else cctx.lineTo(x1, y1);
+            let angle2 = angle + (Math.PI*2/10);
+            let x2 = x + Math.cos(angle2)*3;
+            let y2 = y + Math.sin(angle2)*3;
+            cctx.lineTo(x2, y2);
+        }
+        cctx.fill();
+    }
+    
+    cctx.shadowBlur = 0;
+    
+    // === 2. "22" гэсэн тооны хэлбэртэй лаа ===
+    // Тооны координат (тортны дээд хэсгийн голд)
+    let numX = w/2 - 35;
+    let numY = h-178;
+    
+    // Тоо "2" (эхний)
+    cctx.shadowBlur = 6;
+    cctx.shadowColor = "rgba(255,100,0,0.5)";
+    cctx.lineWidth = 12;
+    cctx.lineCap = 'round';
+    cctx.strokeStyle = '#ff8c42';
+    // Зурах зам: 2-ын хэлбэр
     cctx.beginPath();
-    cctx.moveTo(candleX+9, candleY-3);
-    cctx.lineTo(candleX+9, candleY-12);
+    cctx.moveTo(numX+5, numY);
+    cctx.quadraticCurveTo(numX+20, numY-12, numX+28, numY-5);
+    cctx.lineTo(numX+18, numY+15);
+    cctx.lineTo(numX+32, numY+28);
     cctx.stroke();
+    // Хоёр дахь "2"
     cctx.beginPath();
-    cctx.moveTo(candleX+53, candleY-3);
-    cctx.lineTo(candleX+53, candleY-12);
+    cctx.moveTo(numX+45, numY);
+    cctx.quadraticCurveTo(numX+60, numY-12, numX+68, numY-5);
+    cctx.lineTo(numX+58, numY+15);
+    cctx.lineTo(numX+72, numY+28);
     cctx.stroke();
-    cctx.fillStyle = '#ffa500';
-    cctx.beginPath();
-    cctx.moveTo(candleX+9, candleY-14);
-    cctx.quadraticCurveTo(candleX+15, candleY-22, candleX+9, candleY-28);
-    cctx.quadraticCurveTo(candleX+3, candleY-22, candleX+9, candleY-14);
-    cctx.fill();
-    cctx.beginPath();
-    cctx.moveTo(candleX+53, candleY-14);
-    cctx.quadraticCurveTo(candleX+59, candleY-22, candleX+53, candleY-28);
-    cctx.quadraticCurveTo(candleX+47, candleY-22, candleX+53, candleY-14);
-    cctx.fill();
-    cctx.font = "bold 28px 'Segoe UI'";
-    cctx.fillStyle = "#d43f1f";
-    cctx.fillText("22", w/2-18, h-85);
+    
+    // Дөл (лааны гал) – тоо бүрийн орой дээр
+    function drawFlame(x, y) {
+        cctx.beginPath();
+        cctx.moveTo(x, y);
+        cctx.quadraticCurveTo(x+6, y-12, x+12, y-6);
+        cctx.quadraticCurveTo(x+6, y-2, x, y);
+        cctx.fillStyle = '#ff7b24';
+        cctx.fill();
+        cctx.beginPath();
+        cctx.moveTo(x+2, y-2);
+        cctx.quadraticCurveTo(x+6, y-10, x+10, y-4);
+        cctx.quadraticCurveTo(x+6, y, x+2, y-2);
+        cctx.fillStyle = '#ffd966';
+        cctx.fill();
+        // Гэрлийн цацраг
+        cctx.shadowBlur = 15;
+        cctx.shadowColor = "orange";
+    }
+    
+    // Эхний 2-ын орой
+    drawFlame(numX+18, numY-8);
+    // Хоёр дахь 2-ын орой
+    drawFlame(numX+58, numY-8);
+    
+    // Нэмэлт чимэг: тооны эргэн тойронд од, гялтгануур
+    for(let g=0; g<20; g++) {
+        let angle = Math.random() * Math.PI*2;
+        let rad = 20 + Math.random()*25;
+        let px = (w/2) + Math.cos(angle)*rad;
+        let py = (h-175) + Math.sin(angle)*rad - 5;
+        cctx.beginPath();
+        cctx.arc(px, py, 1.5+Math.random()*2, 0, Math.PI*2);
+        cctx.fillStyle = rgba(255, 200, 100, ${0.5+Math.random()*0.5});
+        cctx.fill();
+    }
+    
+    cctx.shadowBlur = 0;
+    // Тортны доорхи сүүдэр
+    cctx.fillStyle = 'rgba(0,0,0,0.1)';
+    cctx.fillRect(30, h-95, w-60, 12);
+    
+    // Бялууны тавган дээрх гялбаа
+    cctx.fillStyle = '#fff9e8';
+    cctx.fillRect(35, h-92, w-70, 5);
 }
 
 // ---------- Од харвах ----------
