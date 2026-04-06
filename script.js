@@ -36,7 +36,7 @@ document.body.addEventListener('click', function once() {
     document.body.removeEventListener('click', once);
 }, { once: true });
 
-// Захианы агуулга
+// ---------- Захианы агуулга (backtick ашигласан) ----------
 const firstMsg = `喔我…..
 偷偷地爱上你
 却不敢告诉你
@@ -215,7 +215,6 @@ btnMsg2.onclick = () => {
     messageContentDiv.innerHTML = <p style="white-space: pre-wrap;">${secondMsg}</p>;
     showPanel('message');
 };
-
 msgNextBtn.onclick = () => {
     startMusic();
     if(currentMessage === 'first') {
