@@ -8,41 +8,78 @@
 </head>
 <body>
 <div class="app-container">
-    <!-- Цэцэг дэлгэрэх -->
+    <!-- 1. Цэцэг дэлгэрэх хэсэг -->
     <div id="flowerPanel" class="panel">
         <div class="title-sm">🌱 ЦЭЦЭГ ДЭЛГЭРЖ БАЙНА...</div>
-        <canvas id="flowerCanvas" width="500" height="500"></canvas>
+        <canvas id="flowerCanvas" class="flower-canvas" width="500" height="500"></canvas>
         <button id="flowerNextBtn" class="btn-next hidden">Цааш ➡</button>
     </div>
 
-    <!-- Хоёр захианы товч -->
+    <!-- 2. Хоёр захианы товчлуур -->
     <div id="choicePanel" class="panel hidden">
         <div class="title-sm">💌 ЗАХИАНУУД 💌</div>
         <button id="btnMsg1" class="choice-btn">📜 1-р захиа</button>
         <button id="btnMsg2" class="choice-btn">💖 2-р захиа</button>
     </div>
 
-    <!-- Захиа унших -->
+    <!-- 3. Захиа унших хэсэг -->
     <div id="messagePanel" class="panel hidden">
         <div class="message-card" id="messageContent"></div>
         <button id="msgNextBtn" class="btn-next">Цааш ✨</button>
     </div>
 
-    <!-- Баяр хүргэх үг -->
+    <!-- 4. Баяр хүргэх үг -->
     <div id="thanksPanel" class="panel hidden">
         <div class="message-card" id="thanksCard"></div>
         <button id="thanksNextBtn" class="btn-next">Цааш 🎂</button>
     </div>
 
-    <!-- Бялуу + 22 лаа -->
+    <!-- 5. Бялуу + 22 тооны лаа -->
     <div id="cakePanel" class="panel hidden">
         <div class="title-sm">🎂 Төрсөн өдрийн бялуу 🎂</div>
-        <canvas id="cakeCanvas" width="500" height="280"></canvas>
+        <div class="codepen-cake-container">
+            <div class="cake">
+                <div class="tier tier-1">
+                    <div class="filling"></div>
+                    <div class="icing-group">
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                    </div>
+                </div>
+                <div class="tier tier-2">
+                    <div class="filling"></div>
+                    <div class="icing-group">
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                        <div class="icing"></div><div class="icing"></div>
+                    </div>
+                </div>
+                <div class="tier tier-3">
+                    <div class="filling"></div>
+                    <div class="icing-group">
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                        <div class="icing"></div><div class="icing"></div><div class="icing"></div>
+                    </div>
+                </div>
+                <!-- 22 гэсэн тооны лаа -->
+                <div class="number-candles">
+                    <div class="number-candle digit-2 first-digit">
+                        <div class="flame"><div class="flame-in"></div></div>
+                        <span class="digit-shape">2</span>
+                    </div>
+                    <div class="number-candle digit-2 second-digit">
+                        <div class="flame"><div class="flame-in"></div></div>
+                        <span class="digit-shape">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button id="cakeNextBtn" class="btn-next hidden">Цааш 🌠</button>
         <div id="cakeTimerInfo"></div>
     </div>
 
-    <!-- Дөрвөлжин зураг + од харвах -->
+    <!-- 6. Дөрвөлжин зураг + од харвах -->
     <div id="starPanel" class="panel hidden">
         <div class="title-sm">✨ Оддын мөрөөр ✨</div>
         <div class="star-scene">
@@ -54,7 +91,7 @@
         <button id="starNextBtn" class="btn-next hidden">Цааш 💫</button>
     </div>
 
-    <!-- Төгсгөл -->
+    <!-- 7. Төгсгөл -->
     <div id="finalPanel" class="panel hidden">
         <div class="thankyou-text">Баярлалаа! ❤️</div>
         <div class="birthday-wish">🎈 Төрсөн өдрийн мэнд 🎈</div>
